@@ -1,12 +1,20 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-import "ds-test/test.sol";
+import "forge-std/Test.sol";
+import "src/Contract.sol";
 
-contract ContractTest is DSTest {
-    function setUp() public {}
+contract ContractTest is Test {
+    Contract c;
 
-    function testExample() public {
-        assertTrue(true);
+    function setUp() public {
+        c = new Contract();
+    }
+
+    function testCan_saveTimestamp() public {
+        uint256 timeStart = block.timestamp;
+        c.setTimeStart();
+        vm.warp(100);
+        assertEq(c.timeStart(), timeStart);
     }
 }
