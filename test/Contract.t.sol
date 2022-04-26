@@ -15,6 +15,8 @@ contract ContractTest is Test {
         uint256 timeStart = block.timestamp;
         c.setTimeStart();
         vm.warp(100);
+        /* emit log_uint(c.timeStart()); */
+        /* emit log_uint(timeStart); */
         assertEq(c.timeStart(), timeStart);
     }
 }
